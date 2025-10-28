@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CJM Skin Lab - Tienda de Ropa | Nicaragua</title>
+    <style>
+        /* Estilos generales */
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --dark: #292f36;
+            --light: #f7fff7;
+            --accent: #ffd166;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background: #3dbeb6;
+        }
+        
+        /* Header */
+        header {
+            background: var(--dark);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(41, 47, 54, 0.8), rgba(41, 47, 54, 0.8)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 120px 0;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Productos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-img {
+            height: 200px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        
+        /* Eventos */
+        .events {
+            background: #f9f9f9;
+        }
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .event-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .event-img {
+            height: 180px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .event-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .event-info {
+            padding: 20px;
+        }
+        
+        .event-date {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        /* Sobre Nosotros */
+        .about {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-img {
+            flex: 1;
+            height: 400px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .about-content {
+            flex: 1;
+        }
+        
+        /* Contacto */
+        .contact {
+            background: var(--dark);
+            color: white;
+        }
+        
+        .contact h2 {
+            color: white;
+        }
+        
+        .contact h2::after {
+            background: var(--secondary);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .contact-info h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+        
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #ccc;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1e23;
+            color: #aaa;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .social-links a {
+            color: white;
+            background: var(--dark);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about {
+                flex-direction: column;
+            }
+            
+            .about-img {
+                width: 100%;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                width: 100%;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img src="https://i.ibb.co/6n0J7qG/cjm-logo.png" alt="CJM Skin Lab Logo">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#eventos">Eventos</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">☰</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Bienvenidos a CJM Skin Lab</h1>
+            <p>Tu tienda de ropa con estilo anime y videojuegos en Nicaragua. Descubre nuestras colecciones únicas y participa en nuestros eventos especiales.</p>
+            <a href="#productos" class="btn">Ver Productos</a>
+            <a href="#eventos" class="btn btn-secondary">Próximos Eventos</a>
+        </div>
+    </section>
+
+    <!-- Productos -->
+    <section id="productos">
+        <div class="container">
+            <h2>Nuestros Productos</h2>
+            <div class="products-grid">
+                <!-- Producto 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://i.ibb.co/0Qf3n3H/camiseta-anime.jpg" alt="Camiseta Anime Design">
+                    </div>
+                    <div class="product-info">
+                        <h3>Camiseta Anime Design</h3>
+                        <p>Camiseta de algodón premium con diseño exclusivo.</p>
+                        <div class="price">$25.00</div>
+                        <a href="#" class="btn">Comprar</a>
+                    </div>
+                </div>
+                
+                <!-- Producto 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://i.ibb.co/3YJ0P9c/hoodie-gamer.jpg" alt="Hoodie Gamer Edition">
+                    </div>
+                    <div class="product-info">
+                        <h3>Hoodie Gamer Edition</h3>
+                        <p>Hoodie cómoda con capucha y diseño gamer.</p>
+                        <div class="price">$45.00</div>
+                        <a href="#" class="btn">Comprar</a>
+                    </div>
+                </div>
+                
+                <!-- Producto 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://i.ibb.co/4T8qH1t/gorra-retro.jpg" alt="Gorra Retro Gaming">
+                    </div>
+                    <div class="product-info">
+                        <h3>Gorra Retro Gaming</h3>
+                        <p>Gorra ajustable con logo retro de videojuegos.</p>
+                        <div class="price">$20.00</div>
+                        <a href="#" class="btn">Comprar</a>
+                    </div>
+                </div>
+                
+                <!-- Producto 4 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://i.ibb.co/6g7wzH4/pantalon-street.jpg" alt="Pantalón Street Style">
+                    </div>
+                    <div class="product-info">
+                        <h3>Pantalón Street Style</h3>
+                        <p>Pantalón urbano con detalles de anime.</p>
+                        <div class="price">$35.00</div>
+                        <a href="#" class="btn">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eventos -->
+    <section class="events" id="eventos">
+        <div class="container">
+            <h2>Próximos Eventos</h2>
+            <div class="events-grid">
+                <!-- Evento 1 -->
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="https://i.ibb.co/0Q5C1s9/expo-anime.jpg" alt="Expo Anime Nicaragua 2023">
+                    </div>
+                    <div class="event-info">
+                        <div class="event-date">15 Noviembre 2023 - Managua, Nicaragua</div>
+                        <h3>Expo Anime Nicaragua 2023</h3>
+                        <p>Participa en la convención de anime más grande del país. Stand con productos exclusivos y descuentos especiales.</p>
+                        <a href="#" class="btn">Más Información</a>
+                    </div>
+                </div>
+                
+                <!-- Evento 2 -->
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="https://i.ibb.co/6Pp1W7t/game-fest.jpg" alt="Video Game Fest 2023">
+                    </div>
+                    <div class="event-info">
+                        <div class="event-date">30 Noviembre 2023 - Granada, Nicaragua</div>
+                        <h3>Video Game Fest 2023</h3>
+                        <p>Festival dedicado a los videojuegos con torneos, cosplay y nuestra tienda pop-up con merch oficial.</p>
+                        <a href="#" class="btn">Más Información</a>
+                    </div>
+                </div>
+                
+                <!-- Evento 3 -->
+                <div class="event-card">
+                    <div class="event-img">
+                        <img src="https://i.ibb.co/3v7Vc9G/lanzamiento-navidad.jpg" alt="Lanzamiento Colección Navideña">
+                    </div>
+                    <div class="event-info">
+                        <div class="event-date">10 Diciembre 2023 - León, Nicaragua</div>
+                        <h3>Lanzamiento Colección Navideña</h3>
+                        <p>Evento especial para el lanzamiento de nuestra colección limitada de navidad con temática anime.</p>
+                        <a href="#" class="btn">Más Información</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section id="nosotros">
+        <div class="container">
+            <div class="about">
+                <div class="about-img">
+                    <img src="https://i.ibb.co/2NxLQ5R/tienda-cjm.jpg" alt="Interior de CJM Skin Lab">
+                </div>
+                <div class="about-content">
+                    <h2>Sobre CJM Skin Lab</h2>
+                    <p>Somos una tienda de ropa nicaragüense especializada en moda urbana con inspiración en el anime, videojuegos y la cultura pop. Nuestra misión es ofrecer productos de calidad con diseños únicos que reflejen tu personalidad y pasiones.</p>
+                    <p>Desde nuestro local en Nicaragua, hemos crecido para convertirnos en un referente para los amantes del anime y los videojuegos, participando activamente en convenciones y eventos por todo el país.</p>
+                    <p>En CJM Skin Lab, no solo vendemos ropa, creamos una comunidad donde los fans pueden expresarse libremente y conectar con otros que comparten sus mismos intereses.</p>
+                    <a href="#contacto" class="btn">Visítanos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <h2>Contacto</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Información de Contacto</h3>
+                    <p><strong>Dirección:</strong> Calle Principal #123, Managua, Nicaragua</p>
+                    <p><strong>Teléfono:</strong> +505 2222-3333</p>
+                    <p><strong>Email:</strong> info@cjmskinlab.com</p>
+                    <p><strong>Horario:</strong> Lunes a Sábado: 9:00 AM - 6:00 PM</p>
+                    
+                    <h3>Síguenos en Redes Sociales</h3>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">IG</a>
+                        <a href="#">TW</a>
+                        <a href="#">YT</a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Envíanos un Mensaje</h3>
+                    <form>
+                        <input type="text" placeholder="Tu Nombre" required>
+                        <input type="email" placeholder="Tu Email" required>
+                        <input type="text" placeholder="Asunto" required>
+                        <textarea placeholder="Tu Mensaje" rows="5" required></textarea>
+                        <button type="submit" class="btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CJM Skin Lab</h3>
+                    <p>Tu tienda de ropa con estilo anime y videojuegos en Nicaragua.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul style="list-style: none;">
+                        <li><a href="#inicio" style="color: #aaa; text-decoration: none;">Inicio</a></li>
+                        <li><a href="#productos" style="color: #aaa; text-decoration: none;">Productos</a></li>
+                        <li><a href="#eventos" style="color: #aaa; text-decoration: none;">Eventos</a></li>
+                        <li><a href="#nosotros" style="color: #aaa; text-decoration: none;">Nosotros</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Suscríbete para recibir noticias sobre nuevos productos y eventos.</p>
+                    <input type="email" placeholder="Tu Email" style="padding: 8px; width: 70%; border: none; border-radius: 3px;">
+                    <button class="btn" style="padding: 8px 15px; margin-top: 10px;">Suscribirse</button>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 CJM Skin Lab - Tienda de Ropa Nicaragua. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script para el menú móvil
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+        
+        // Smooth scrolling para los enlaces del menú
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
